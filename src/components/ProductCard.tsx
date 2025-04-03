@@ -2,6 +2,7 @@
 import { Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export interface Product {
   id: number;
@@ -36,13 +37,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Link to={`/product/${id}`}>
       <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-lg">
         <div className="p-4 flex flex-col h-full">
-          {/* Image */}
-          <div className="relative h-48 mb-4 flex items-center justify-center">
-            <img
-              src={image}
-              alt={title}
-              className="max-h-full max-w-full object-contain"
-            />
+          {/* Image with aspect ratio */}
+          <div className="relative mb-4">
+            <AspectRatio ratio={1 / 1} className="bg-gray-50">
+              <img
+                src={image}
+                alt={title}
+                className="h-full w-full object-contain mix-blend-multiply"
+                loading="lazy"
+              />
+            </AspectRatio>
           </div>
 
           {/* Content */}
@@ -59,7 +63,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <span className="text-gray-500 text-xs">({reviews})</span>
               {assured && (
                 <img
-                  src="/placeholder.svg"
+                  src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
                   alt="Flipkart Assured"
                   className="h-4 ml-1"
                 />

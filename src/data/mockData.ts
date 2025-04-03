@@ -5,7 +5,7 @@ export const featuredProducts: Product[] = [
   {
     id: 1,
     title: "APPLE iPhone 15 (Black, 128 GB)",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=880&auto=format&fit=crop",
     price: 69999,
     originalPrice: 79900,
     discount: 12,
@@ -16,7 +16,7 @@ export const featuredProducts: Product[] = [
   {
     id: 2,
     title: "SAMSUNG Galaxy S23 Ultra (Green, 256 GB)",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?q=80&w=1000&auto=format&fit=crop",
     price: 124999,
     originalPrice: 149900,
     discount: 16,
@@ -27,7 +27,7 @@ export const featuredProducts: Product[] = [
   {
     id: 3,
     title: "SONY WH-1000XM5 Bluetooth Headset",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop",
     price: 29990,
     originalPrice: 34990,
     discount: 14,
@@ -38,7 +38,7 @@ export const featuredProducts: Product[] = [
   {
     id: 4,
     title: "APPLE MacBook Air M2 - 8 GB/256 GB SSD/macOS Ventura",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
     price: 99990,
     originalPrice: 119900,
     discount: 16,
@@ -49,7 +49,7 @@ export const featuredProducts: Product[] = [
   {
     id: 5,
     title: "ASUS ROG Strix G15 Gaming Laptop",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?q=80&w=1000&auto=format&fit=crop",
     price: 89990,
     originalPrice: 104990,
     discount: 14,
@@ -60,7 +60,7 @@ export const featuredProducts: Product[] = [
   {
     id: 6,
     title: "boAt Rockerz 450 Bluetooth Headset",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=1000&auto=format&fit=crop",
     price: 1499,
     originalPrice: 3990,
     discount: 62,
@@ -71,7 +71,7 @@ export const featuredProducts: Product[] = [
   {
     id: 7,
     title: "MI 108 cm (43 inch) Ultra HD (4K) LED Smart Google TV",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=1000&auto=format&fit=crop",
     price: 25999,
     originalPrice: 42999,
     discount: 39,
@@ -82,7 +82,7 @@ export const featuredProducts: Product[] = [
   {
     id: 8,
     title: "Samsung Galaxy Watch 6 - 40mm, Super AMOLED",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=1000&auto=format&fit=crop",
     price: 19999,
     originalPrice: 29999,
     discount: 33,
@@ -96,7 +96,7 @@ export const newArrivals: Product[] = [
   {
     id: 9,
     title: "OnePlus 12 (Flowy Emerald, 256 GB)",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1598965402089-897c69f7105e?q=80&w=1000&auto=format&fit=crop",
     price: 69999,
     originalPrice: 79999,
     discount: 12,
@@ -107,7 +107,7 @@ export const newArrivals: Product[] = [
   {
     id: 10,
     title: "APPLE iPad Pro (2024) Wi-Fi + Cellular",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=1000&auto=format&fit=crop",
     price: 89990,
     originalPrice: 99900,
     discount: 10,
@@ -118,7 +118,7 @@ export const newArrivals: Product[] = [
   {
     id: 11,
     title: "SONY Bravia 65-inch 4K Google TV",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=1000&auto=format&fit=crop",
     price: 84990,
     originalPrice: 119900,
     discount: 29,
@@ -129,7 +129,7 @@ export const newArrivals: Product[] = [
   {
     id: 12,
     title: "Dyson V15 Detect Cordless Vacuum",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=1000&auto=format&fit=crop",
     price: 49990,
     originalPrice: 59990,
     discount: 16,
@@ -140,7 +140,7 @@ export const newArrivals: Product[] = [
   {
     id: 13,
     title: "SAMSUNG Galaxy Z Fold5 - Phantom Black",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1581993192008-63e896f4f744?q=80&w=1000&auto=format&fit=crop",
     price: 154999,
     originalPrice: 169999,
     discount: 8,
@@ -151,7 +151,7 @@ export const newArrivals: Product[] = [
   {
     id: 14,
     title: "LG 8 kg 5 Star Fully Automatic Front Load Washing Machine",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=1000&auto=format&fit=crop",
     price: 32990,
     originalPrice: 45990,
     discount: 28,
@@ -165,7 +165,7 @@ export const topDeals: Product[] = [
   {
     id: 15,
     title: "Noise ColorFit Pro 5 Smartwatch",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?q=80&w=1000&auto=format&fit=crop",
     price: 2999,
     originalPrice: 7999,
     discount: 62,
@@ -176,7 +176,7 @@ export const topDeals: Product[] = [
   {
     id: 16,
     title: "Fire-Boltt Phoenix Ultra Luxury Smartwatch",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1544117519-31a4a39696a8?q=80&w=1000&auto=format&fit=crop",
     price: 1499,
     originalPrice: 11999,
     discount: 87,
@@ -187,7 +187,7 @@ export const topDeals: Product[] = [
   {
     id: 17,
     title: "Pigeon FAVOURITE Electric Kettle (1.5 L)",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1594152032355-5a0c71886070?q=80&w=1000&auto=format&fit=crop",
     price: 499,
     originalPrice: 1245,
     discount: 59,
@@ -198,7 +198,7 @@ export const topDeals: Product[] = [
   {
     id: 18,
     title: "ASIAN Men's Sports Running Shoes",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop",
     price: 599,
     originalPrice: 1299,
     discount: 53,
@@ -209,7 +209,7 @@ export const topDeals: Product[] = [
   {
     id: 19,
     title: "Allen Solly Men's Regular Fit Shirt",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?q=80&w=1000&auto=format&fit=crop",
     price: 899,
     originalPrice: 1799,
     discount: 50,
@@ -220,7 +220,7 @@ export const topDeals: Product[] = [
   {
     id: 20,
     title: "Lifelong LLEK20 Electric Kettle 2L",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1571942676516-bcab84649e44?q=80&w=1000&auto=format&fit=crop",
     price: 699,
     originalPrice: 1999,
     discount: 65,
@@ -231,8 +231,8 @@ export const topDeals: Product[] = [
 ];
 
 export const bannerImages = [
-  "/placeholder.svg",
-  "/placeholder.svg",
-  "/placeholder.svg",
-  "/placeholder.svg",
+  "https://images.unsplash.com/photo-1607082352121-fa243f3dde32?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1577174881658-0f30ed549adc?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1524383902853-13c8134bfb5b?q=80&w=1000&auto=format&fit=crop",
 ];

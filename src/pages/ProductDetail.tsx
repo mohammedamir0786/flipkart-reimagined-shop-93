@@ -28,6 +28,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Product } from "@/components/ProductCard";
 import { useToast } from "@/components/ui/use-toast";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -91,12 +92,14 @@ const ProductDetail = () => {
               {/* Product Images */}
               <div className="md:w-2/5">
                 <div className="sticky top-20">
-                  <div className="border border-gray-200 p-4 rounded-lg bg-white h-80 flex items-center justify-center mb-4">
-                    <img 
-                      src={product.image} 
-                      alt={product.title} 
-                      className="max-h-full max-w-full object-contain"
-                    />
+                  <div className="border border-gray-200 p-4 rounded-lg bg-white mb-4">
+                    <AspectRatio ratio={1 / 1}>
+                      <img 
+                        src={product.image} 
+                        alt={product.title} 
+                        className="h-full w-full object-contain mix-blend-multiply"
+                      />
+                    </AspectRatio>
                   </div>
                   
                   <div className="flex gap-4">
