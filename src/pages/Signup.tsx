@@ -19,24 +19,30 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/contexts/AuthContext";
 
 const formSchema = z.object({
+  fullName: z.string().min(3, { message: "Full name must be at least 3 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
+  mobile: z.string().regex(/^\d{10}$/, { message: "Please enter a valid 10-digit mobile number" }),
   password: z.string().min(6, { message: "Password must be at least 6 characters" }),
-  rememberMe: z.boolean().default(false),
+  termsAccepted: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions",
+  }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
-const Login = () => {
+const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { signup } = useAuth();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      fullName: "",
       email: "",
+      mobile: "",
       password: "",
-      rememberMe: false,
+      termsAccepted: false,
     },
   });
 
@@ -44,26 +50,20 @@ const Login = () => {
     setIsLoading(true);
     
     try {
-      // In a real app, you would authenticate against a backend
-      console.log("Login attempt with:", values);
-      
-      // Simulate authentication delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Use the login function from AuthContext
-      login(values.email);
+      // Call the signup function from AuthContext
+      await signup(values.email, values.fullName);
       
       toast({
-        title: "Login successful",
-        description: "Welcome back!",
+        title: "Account created successfully",
+        description: "You can now log in to your account",
       });
       
-      navigate("/");
+      navigate("/login");
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Signup failed:", error);
       toast({
-        title: "Login failed",
-        description: "Please check your credentials and try again",
+        title: "Signup failed",
+        description: "There was an error creating your account. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -81,24 +81,42 @@ const Login = () => {
         </div>
         
         <div className="mt-auto hidden md:block">
-          <h2 className="text-2xl font-semibold mb-4">Login</h2>
-          <p className="mb-6">Get access to your Orders, Wishlist and Recommendations</p>
+          <h2 className="text-2xl font-semibold mb-4">Looks like you're new here!</h2>
+          <p className="mb-6">Sign up with your details to get started with Flipkart shopping experience</p>
           <img 
             src="/placeholder.svg" 
-            alt="Login" 
+            alt="Signup" 
             className="w-3/4 mx-auto"
           />
         </div>
       </div>
       
-      {/* Right side - Login form */}
+      {/* Right side - Signup form */}
       <div className="flex-1 p-8 flex items-center justify-center">
         <div className="w-full max-w-md">
           <div className="bg-white p-8 rounded-md shadow-md">
-            <h2 className="text-xl font-medium mb-6 md:hidden">Login</h2>
+            <h2 className="text-xl font-medium mb-6 md:hidden">Create Account</h2>
             
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                <FormField
+                  control={form.control}
+                  name="fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter Full Name"
+                          {...field}
+                          disabled={isLoading}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
                 <FormField
                   control={form.control}
                   name="email"
@@ -108,6 +126,24 @@ const Login = () => {
                       <FormControl>
                         <Input
                           placeholder="Enter Email"
+                          {...field}
+                          disabled={isLoading}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="mobile"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Mobile Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter Mobile Number"
                           {...field}
                           disabled={isLoading}
                         />
@@ -136,46 +172,43 @@ const Login = () => {
                   )}
                 />
                 
-                <div className="flex items-center justify-between">
-                  <FormField
-                    control={form.control}
-                    name="rememberMe"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-row items-center space-x-2 space-y-0">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                            disabled={isLoading}
-                          />
-                        </FormControl>
-                        <FormLabel className="text-sm font-normal cursor-pointer">
-                          Remember me
+                <FormField
+                  control={form.control}
+                  name="termsAccepted"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-2 space-y-0">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          disabled={isLoading}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel className="text-sm font-normal">
+                          I agree to the <Link to="/terms" className="text-flipkart-blue">Terms of Use</Link> & <Link to="/privacy" className="text-flipkart-blue">Privacy Policy</Link>
                         </FormLabel>
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <Link to="/forgot-password" className="text-sm text-flipkart-blue">
-                    Forgot password?
-                  </Link>
-                </div>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
                 
                 <Button
                   type="submit"
                   className="w-full bg-flipkart-orange hover:bg-flipkart-orange/90 text-white"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Logging in..." : "Login"}
+                  {isLoading ? "Creating Account..." : "Sign Up"}
                 </Button>
               </form>
             </Form>
             
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                New to Flipkart?{" "}
-                <Link to="/signup" className="text-flipkart-blue font-medium">
-                  Create an account
+                Already have an account?{" "}
+                <Link to="/login" className="text-flipkart-blue font-medium">
+                  Login
                 </Link>
               </p>
             </div>
@@ -186,4 +219,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

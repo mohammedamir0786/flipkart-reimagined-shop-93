@@ -27,7 +27,7 @@ import { toast } from "@/hooks/use-toast";
 const Header = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const isMobile = useIsMobile();
-  const { isLoggedIn, userEmail, logout } = useAuth();
+  const { isLoggedIn, userEmail, userName, logout } = useAuth();
   const navigate = useNavigate();
   
   const handleLogout = () => {
@@ -84,7 +84,7 @@ const Header = () => {
                       <Button variant="ghost" className="text-white hover:bg-white/10">
                         <User className="mr-1 h-4 w-4" />
                         <span className="hidden md:inline max-w-24 truncate">
-                          {userEmail ? userEmail.split('@')[0] : 'Account'}
+                          {userName || userEmail?.split('@')[0] || 'Account'}
                         </span>
                       </Button>
                     </DropdownMenuTrigger>
