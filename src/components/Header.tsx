@@ -1,22 +1,42 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   Bell, 
   ChevronDown, 
   Heart, 
   LogIn, 
+  LogOut,
   Search, 
   ShoppingCart, 
   User 
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "@/hooks/use-toast";
 
 const Header = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const isMobile = useIsMobile();
+  const { isLoggedIn, userEmail, logout } = useAuth();
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    logout();
+    toast({
+      title: "Logged out",
+      description: "You have been successfully logged out",
+    });
+  };
   
   return (
     <header className="sticky top-0 z-50 w-full bg-flipkart-blue text-white shadow-md">
@@ -56,12 +76,49 @@ const Header = () => {
           {/* Nav Items - hidden on mobile when search is focused */}
           {!(isMobile && isSearchFocused) && (
             <div className="flex items-center gap-4">
-              {/* Login Button */}
-              <div className="relative hidden md:block">
-                <Button variant="ghost" className="text-white hover:bg-white/10">
-                  <LogIn className="mr-1 h-4 w-4" />
-                  Login
-                </Button>
+              {/* Login/User Menu */}
+              <div className="relative">
+                {isLoggedIn ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="text-white hover:bg-white/10">
+                        <User className="mr-1 h-4 w-4" />
+                        <span className="hidden md:inline max-w-24 truncate">
+                          {userEmail ? userEmail.split('@')[0] : 'Account'}
+                        </span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                      <div className="px-2 py-1.5 text-sm font-medium">
+                        {userEmail}
+                      </div>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => navigate('/profile')}>
+                        My Profile
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => navigate('/orders')}>
+                        Orders
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => navigate('/wishlist')}>
+                        Wishlist
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={handleLogout}>
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Button 
+                    variant="ghost" 
+                    className="text-white hover:bg-white/10"
+                    onClick={() => navigate('/login')}
+                  >
+                    <LogIn className="mr-1 h-4 w-4" />
+                    Login
+                  </Button>
+                )}
               </div>
 
               {/* Become a Seller */}
