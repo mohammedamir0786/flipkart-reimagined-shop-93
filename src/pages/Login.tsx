@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { X } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -44,13 +44,10 @@ const Login = () => {
     setIsLoading(true);
     
     try {
-      // In a real app, you would authenticate against a backend
       console.log("Login attempt with:", values);
       
-      // Simulate authentication delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Use the login function from AuthContext
       login(values.email);
       
       toast({
@@ -71,9 +68,20 @@ const Login = () => {
     }
   };
 
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row">
-      {/* Left side - Flipkart branding */}
+    <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row relative">
+      <button 
+        onClick={handleGoHome} 
+        className="absolute top-4 right-4 z-10 p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+        aria-label="Close and go to home"
+      >
+        <X className="text-gray-700 hover:text-gray-900" size={24} />
+      </button>
+
       <div className="bg-flipkart-blue text-white p-8 md:w-2/5 flex flex-col">
         <div className="mb-8">
           <h1 className="text-3xl font-bold italic mb-2">Flipkart</h1>
@@ -91,7 +99,6 @@ const Login = () => {
         </div>
       </div>
       
-      {/* Right side - Login form */}
       <div className="flex-1 p-8 flex items-center justify-center">
         <div className="w-full max-w-md">
           <div className="bg-white p-8 rounded-md shadow-md">
