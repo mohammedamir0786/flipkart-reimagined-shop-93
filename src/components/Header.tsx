@@ -9,7 +9,8 @@ import {
   LogOut,
   Search, 
   ShoppingCart, 
-  User 
+  User,
+  Settings
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -101,6 +102,10 @@ const Header = () => {
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => navigate('/wishlist')}>
                         Wishlist
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => navigate('/admin')}>
+                        <Settings className="mr-2 h-4 w-4" />
+                        Admin Dashboard
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={handleLogout}>

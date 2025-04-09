@@ -12,6 +12,12 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 
+// Admin Routes
+import Admin from "./pages/Admin";
+import Dashboard from "./pages/admin/Dashboard";
+import Products from "./pages/admin/Products";
+import ProductForm from "./pages/admin/ProductForm";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -22,12 +28,23 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
+            {/* Customer-facing routes */}
             <Route path="/" element={<Index />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            
+            {/* Admin routes */}
+            <Route path="/admin" element={<Admin />}>
+              <Route index element={<Dashboard />} />
+              <Route path="products" element={<Products />} />
+              <Route path="products/add" element={<ProductForm />} />
+              <Route path="products/edit/:id" element={<ProductForm />} />
+              {/* Add more admin routes as needed */}
+            </Route>
+            
+            {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
