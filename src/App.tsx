@@ -17,11 +17,6 @@ import Admin from "./pages/Admin";
 import Dashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import ProductForm from "./pages/admin/ProductForm";
-import Customers from "./pages/admin/Customers";
-import PaymentMethods from "./pages/admin/PaymentMethods";
-import RoleManagement from "./pages/admin/RoleManagement";
-import UserManagement from "./pages/admin/UserManagement";
-import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -46,24 +41,7 @@ const App = () => (
               <Route path="products" element={<Products />} />
               <Route path="products/add" element={<ProductForm />} />
               <Route path="products/edit/:id" element={<ProductForm />} />
-              <Route path="customers" element={
-                <ProtectedRoute module="customers" action="view">
-                  <Customers />
-                </ProtectedRoute>
-              } />
-              <Route path="analytics/payments" element={<PaymentMethods />} />
-              
-              {/* Role management routes */}
-              <Route path="settings/roles" element={
-                <ProtectedRoute module="settings" action="view">
-                  <RoleManagement />
-                </ProtectedRoute>
-              } />
-              <Route path="settings/users" element={
-                <ProtectedRoute module="settings" action="view">
-                  <UserManagement />
-                </ProtectedRoute>
-              } />
+              {/* Add more admin routes as needed */}
             </Route>
             
             {/* Catch-all route */}

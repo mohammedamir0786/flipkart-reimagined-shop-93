@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -21,7 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { ChevronLeft, Sparkles, Loader2 } from "lucide-react";
+import { ChevronLeft, Magic, Loader2 } from "lucide-react";
 import { featuredProducts, newArrivals, topDeals } from "@/data/mockData";
 import { Product } from "@/components/ProductCard";
 import AIDescriptionModal from "@/components/admin/AIDescriptionModal";
@@ -35,6 +36,7 @@ interface AdminProduct extends Product {
   description?: string;
 }
 
+// Convert the existing product data to admin products
 const mockProducts: AdminProduct[] = [
   ...featuredProducts.map(p => ({ 
     ...p, 
@@ -62,6 +64,7 @@ const mockProducts: AdminProduct[] = [
   })),
 ];
 
+// Product categories
 const categories = [
   "Electronics",
   "Mobile Phones",
@@ -82,6 +85,7 @@ const ProductForm = () => {
   const [isAIModalOpen, setIsAIModalOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   
+  // Form state
   const [formData, setFormData] = useState<AdminProduct>({
     id: 0,
     title: "",
@@ -98,6 +102,7 @@ const ProductForm = () => {
     description: "",
   });
   
+  // If in edit mode, fetch the product data
   useEffect(() => {
     if (isEditMode && id) {
       const productId = parseInt(id);
@@ -106,6 +111,7 @@ const ProductForm = () => {
       if (product) {
         setFormData(product);
       } else {
+        // Product not found, redirect to products list
         navigate("/admin/products");
         toast.error("Product not found");
       }
@@ -135,6 +141,7 @@ const ProductForm = () => {
     setIsSaving(true);
     
     try {
+      // Simulate API request
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const message = isEditMode
@@ -264,7 +271,7 @@ const ProductForm = () => {
                         className="flex items-center gap-1 text-flipkart-blue"
                         onClick={() => setIsAIModalOpen(true)}
                       >
-                        <Sparkles size={14} />
+                        <Magic size={14} />
                         Generate with AI
                       </Button>
                     </div>
@@ -272,13 +279,14 @@ const ProductForm = () => {
                       id="description" 
                       name="description" 
                       placeholder="Product description" 
-                      className={`min-h-32 ${
+                      className="min-h-32"
+                      value={formData.description}
+                      onChange={handleChange}
+                      className={
                         formData.description && formData.description.length > 0
                           ? "border-green-300 focus:border-green-500 focus-visible:ring-green-500/30"
                           : ""
-                      }`}
-                      value={formData.description}
-                      onChange={handleChange}
+                      }
                     />
                   </div>
                   
@@ -410,6 +418,7 @@ const ProductForm = () => {
                     alt={formData.title} 
                     className="w-full h-full object-contain"
                     onError={(e) => {
+                      // If image fails to load, show placeholder
                       (e.target as HTMLImageElement).src = "/placeholder.svg";
                     }}
                   />
