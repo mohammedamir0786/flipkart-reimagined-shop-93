@@ -8,7 +8,8 @@ import {
   BarChart4, 
   Settings,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  CreditCard
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -92,6 +93,12 @@ const AdminSidebar = () => {
           to="/admin/analytics" 
           icon={<BarChart4 size={20} />} 
           label="Analytics" 
+          isCollapsed={isCollapsed}
+        />
+        <NavItem 
+          to="/admin/analytics/payments" 
+          icon={<CreditCard size={20} />} 
+          label="Payment Analytics" 
           isCollapsed={isCollapsed}
         />
         <NavItem 
