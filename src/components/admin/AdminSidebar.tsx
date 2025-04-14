@@ -9,22 +9,28 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  CreditCard
+  CreditCard,
+  Shield,
+  UserCog
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { usePermissions } from "@/hooks/usePermissions";
 
 interface NavItemProps {
   to: string;
   icon: React.ReactNode;
   label: string;
   isCollapsed: boolean;
+  isVisible?: boolean;
 }
 
-const NavItem = ({ to, icon, label, isCollapsed }: NavItemProps) => {
+const NavItem = ({ to, icon, label, isCollapsed, isVisible = true }: NavItemProps) => {
   const location = useLocation();
   const isActive = location.pathname === to || location.pathname.startsWith(`${to}/`);
   
+  if (!isVisible) return null;
+
   return (
     <Link
       to={to}
@@ -43,6 +49,7 @@ const NavItem = ({ to, icon, label, isCollapsed }: NavItemProps) => {
 
 const AdminSidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { canView } = usePermissions();
   
   return (
     <div className={cn(
@@ -76,37 +83,61 @@ const AdminSidebar = () => {
           icon={<LayoutDashboard size={20} />} 
           label="Dashboard" 
           isCollapsed={isCollapsed}
+          isVisible={canView('dashboard')}
         />
         <NavItem 
           to="/admin/products" 
           icon={<ShoppingBag size={20} />} 
           label="Products" 
           isCollapsed={isCollapsed}
+          isVisible={canView('products')}
         />
         <NavItem 
           to="/admin/customers" 
           icon={<Users size={20} />} 
           label="Customers" 
           isCollapsed={isCollapsed}
+          isVisible={canView('customers')}
         />
         <NavItem 
           to="/admin/analytics" 
           icon={<BarChart4 size={20} />} 
           label="Analytics" 
           isCollapsed={isCollapsed}
+          isVisible={canView('analytics')}
         />
         <NavItem 
           to="/admin/analytics/payments" 
           icon={<CreditCard size={20} />} 
           label="Payment Analytics" 
           isCollapsed={isCollapsed}
+          isVisible={canView('analytics')}
         />
-        <NavItem 
-          to="/admin/settings" 
-          icon={<Settings size={20} />} 
-          label="Settings" 
-          isCollapsed={isCollapsed}
-        />
+        
+        {/* Settings section with role management */}
+        <div className="mt-6 pt-4 border-t">
+          <NavItem 
+            to="/admin/settings" 
+            icon={<Settings size={20} />} 
+            label="Settings" 
+            isCollapsed={isCollapsed}
+            isVisible={canView('settings')}
+          />
+          <NavItem 
+            to="/admin/settings/roles" 
+            icon={<Shield size={20} />} 
+            label="Role Management" 
+            isCollapsed={isCollapsed}
+            isVisible={canView('settings')}
+          />
+          <NavItem 
+            to="/admin/settings/users" 
+            icon={<UserCog size={20} />} 
+            label="User Management" 
+            isCollapsed={isCollapsed}
+            isVisible={canView('settings')}
+          />
+        </div>
       </nav>
       
       {/* Admin Footer */}
