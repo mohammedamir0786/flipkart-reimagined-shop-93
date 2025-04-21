@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +16,7 @@ import Admin from "./pages/Admin";
 import Dashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import ProductForm from "./pages/admin/ProductForm";
+import CouponManagement from "./pages/admin/CouponManagement";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +41,7 @@ const App = () => (
               <Route path="products" element={<Products />} />
               <Route path="products/add" element={<ProductForm />} />
               <Route path="products/edit/:id" element={<ProductForm />} />
+              <Route path="coupons" element={<CouponManagement />} />
               {/* Add more admin routes as needed */}
             </Route>
             
