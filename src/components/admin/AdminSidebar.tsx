@@ -3,13 +3,12 @@ import { cn } from "@/lib/utils";
 import { 
   LayoutDashboard, 
   ShoppingBag, 
-  Users, 
-  BarChart4, 
+  Users,
+  BarChart4,
   Settings,
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 interface NavItemProps {
@@ -97,6 +96,12 @@ const AdminSidebar = () => {
           to="/admin/analytics" 
           icon={<BarChart4 size={20} />} 
           label="Analytics" 
+          isCollapsed={isCollapsed}
+        />
+        <NavItem 
+          to="/admin/analytics/payments" 
+          icon={<BarChart4 size={20} />} 
+          label="Payment Analytics" 
           isCollapsed={isCollapsed}
         />
         <NavItem 

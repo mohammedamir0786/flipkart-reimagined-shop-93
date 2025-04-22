@@ -18,6 +18,7 @@ import Products from "./pages/admin/Products";
 import ProductForm from "./pages/admin/ProductForm";
 import CouponManagement from "./pages/admin/CouponManagement";
 import ManageAdmins from "./pages/admin/ManageAdmins";
+import PaymentAnalytics from "./pages/admin/PaymentAnalytics";
 
 const queryClient = new QueryClient();
 
@@ -44,7 +45,7 @@ const App = () => (
               <Route path="products/edit/:id" element={<ProductForm />} />
               <Route path="coupons" element={<CouponManagement />} />
               <Route path="admins" element={<ManageAdmins />} />
-              {/* Add more admin routes as needed */}
+              <Route path="analytics/payments" element={<PaymentAnalytics />} />
             </Route>
             
             {/* Catch-all route */}
