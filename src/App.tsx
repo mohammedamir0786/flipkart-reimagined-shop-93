@@ -17,6 +17,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import ProductForm from "./pages/admin/ProductForm";
 import CouponManagement from "./pages/admin/CouponManagement";
+import ManageAdmins from "./pages/admin/ManageAdmins";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="products/add" element={<ProductForm />} />
               <Route path="products/edit/:id" element={<ProductForm />} />
               <Route path="coupons" element={<CouponManagement />} />
+              <Route path="admins" element={<ManageAdmins />} />
               {/* Add more admin routes as needed */}
             </Route>
             

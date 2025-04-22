@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { 
@@ -80,6 +79,12 @@ const AdminSidebar = () => {
           to="/admin/products" 
           icon={<ShoppingBag size={20} />} 
           label="Products" 
+          isCollapsed={isCollapsed}
+        />
+        <NavItem 
+          to="/admin/admins" 
+          icon={<Users size={20} />} 
+          label="Manage Admins" 
           isCollapsed={isCollapsed}
         />
         <NavItem 
