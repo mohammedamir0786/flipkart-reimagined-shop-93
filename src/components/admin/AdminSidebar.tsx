@@ -117,7 +117,7 @@ const AdminSidebar = () => {
           />
           <NavItem 
             to="/admin/customers" 
-            icon={<UserCheck size={20} />} 
+            icon={<Users size={20} />} 
             label="Customers" 
             isCollapsed={isCollapsed}
           />
